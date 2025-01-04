@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="user-management">
+    <button id="lightDarkModeBtn" onclick="lightMode()"><i id="moon" class="fa fa-moon-o"></i></button>
+    <div class="head">
+      <p class="h1">User Management</p>
+      <p>Manage user details effectively</p>
+    </div>
+
+    <div class="inputs">
+      <input type="text" placeholder="Name" id="name" />
+      <input type="email" placeholder="Email" id="email" />
+      <input type="number" placeholder="Phone" id="phone" />
+      <input type="text" placeholder="Role" id="role" />
+      <input type="text" placeholder="Address" id="address" />
+      <button id="submit">Create</button>
+    </div>
+
+    <div class="outputs">
+      <div class="searchBlock">
+        <input
+          onkeyup="searchData(this.value)"
+          type="text"
+          id="search"
+          placeholder="Search by Name or Role"
+        />
+        <div class="btnSearch">
+          <button onclick="getSearchMood(this.id)" id="searchName">Search By Name</button>
+          <button onclick="getSearchMood(this.id)" id="searchRole">Search By Role</button>
+        </div>
+      </div>
+      <div id="deleteAll">
+        <button id="btnDelete" onclick="deleteAllItems()">Delete All</button>
+      </div>
+      <div class="table">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Address</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* General Styles */
+body {
+  background-color: #333;
+  color: #eee;
+  font-family: system-ui;
+}
+
+/* User Management Container */
+.user-management {
+  width: 80%;
+  margin: auto;
+}
+.h1{
+  font-size: 40px;
+}
+/* Header Section */
+.head {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+.head h1 {
+  color: #fff;
+}
+
+/* Input Styles */
+input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #222;
+  margin: 4px 0;
+  border-radius: 5px;
+  padding: 7px;
+  color: #fff;
+  transition: all 0.5s ease;
+}
+
+input:focus {
+  background-color: #111;
+  transform: scale(1.04);
+}
+
+.input {
+  background-color: #dddddd;
+  color: #111;
+}
+
+.input:focus {
+  background-color: #bbb;
+  transform: scale(1.04);
+}
+
+.body {
+  background-color: white;
+  color: #111;
+}
+
+.button {
+  background-color: #9b02dd !important;
+}
+
+.button:hover {
+  background-color: #9b02ee !important;
+}
+
+.Header {
+  color: #111;
+}
+
+button {
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #47005f;
+  color: #fff;
+  transition: 0.5s;
+  text-transform: capitalize;
+}
+
+button:hover {
+  background-color: #470066;
+  letter-spacing: 1px;
+}
+
+/* Search Section */
+.btnSearch {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btnSearch button {
+  width: 45%;
+}
+
+/* Table Section */
+table {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 5px;
+  border: 1px solid #555;
+}
+
+table th {
+  text-transform: uppercase;
+  background-color: #444;
+  color: #fff;
+}
+
+#tbody tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+/* Delete All Button */
+#deleteAll {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#btnDelete {
+  background-color: #a00d02;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnDelete:hover {
+  background-color: #b50f03;
+}
+
+/* Light/Dark Mode Button */
+#lightDarkModeBtn {
+  padding: 6px;
+  width: 130px;
+  height: 50px;
+  position: absolute;
+  left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #aaa !important;
+  transition: right 2s;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#lightDarkModeBtn i {
+  font-size: 36px;
+}
+
+@keyframes sun {
+  from {
+    left: 10%;
+    transform: rotate(0deg);
+  }
+  to {
+    left: 70%;
+    transform: rotate(360deg);
+  }
+}
+
+#sun {
+  position: absolute;
+  left: 10%;
+  animation-name: sun;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moon {
+  from {
+    left: 70%;
+    transform: rotate(360deg);
+  }
+  to {
+    left: 10%;
+    transform: rotate(0deg);
+  }
+}
+
+#moon {
+  position: absolute;
+  left: 70%;
+  animation-name: moon;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  #sun,
+  #moon {
+    font-size: 25px;
+  }
+
+  #lightDarkModeBtn {
+    width: 20%;
+    height: 40px;
+  }
+
+  @keyframes sun {
+    from {
+      left: 10%;
+      transform: rotate(0deg);
+    }
+    to {
+      left: 65%;
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moon {
+    from {
+      left: 65%;
+      transform: rotate(360deg);
+    }
+    to {
+      left: 10%;
+      transform: rotate(0deg);
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  @keyframes sun {
+    from {
+      left: 10%;
+      transform: rotate(0deg);
+    }
+    to {
+      left: 50%;
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moon {
+    from {
+      left: 50%;
+      transform: rotate(360deg);
+    }
+    to {
+      left: 10%;
+      transform: rotate(0deg);
+    }
+  }
+}
