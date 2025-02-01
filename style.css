@@ -1,25 +1,24 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* General Styles */
 body {
   background-color: #333;
   color: #eee;
   font-family: system-ui;
 }
 
-/* User Management Container */
 .user-management {
   width: 80%;
   margin: auto;
+  animation: fadeIn 1s ease-in-out;
 }
-.h1{
+
+.h1 {
   font-size: 40px;
 }
-/* Header Section */
+
 .head {
   text-align: center;
   text-transform: uppercase;
@@ -30,7 +29,6 @@ body {
   color: #fff;
 }
 
-/* Input Styles */
 input {
   width: 100%;
   height: 30px;
@@ -46,7 +44,9 @@ input {
 
 input:focus {
   background-color: #111;
-  transform: scale(1.04);
+  transform: scale(1.05);
+  border-bottom: 2px solid #9b02dd;
+  transition: transform 0.3s ease, border-bottom 0.3s ease;
 }
 
 .input {
@@ -91,9 +91,14 @@ button {
 button:hover {
   background-color: #470066;
   letter-spacing: 1px;
+  transform: scale(1.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Search Section */
+button:active {
+  transform: scale(0.98);
+}
+
 .btnSearch {
   display: flex;
   justify-content: space-between;
@@ -104,32 +109,32 @@ button:hover {
   width: 45%;
 }
 
-/* Table Section */
 table {
   width: 100%;
   text-align: center;
   margin: 10px 0;
-  border-collapse: collapse;
 }
 
-table th,
-table td {
-  padding: 5px;
-  border: 1px solid #555;
+.table {
+  overflow: hidden;
+  overflow-x: scroll;
 }
 
 table th {
   text-transform: uppercase;
-  background-color: #444;
-  color: #fff;
 }
 
-#tbody tr:nth-child(even) {
-  background-color: #2a2a2a;
+th, td {
+  padding: 5px;
 }
 
-/* Delete All Button */
-#deleteAll {
+table tr:hover {
+  background-color: #333;
+  transform: scale(1.02);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#deleteAll, #backToMain {
   margin: 20px 0;
   text-align: center;
 }
@@ -147,7 +152,6 @@ table th {
   background-color: #b50f03;
 }
 
-/* Light/Dark Mode Button */
 #lightDarkModeBtn {
   padding: 6px;
   width: 130px;
@@ -167,28 +171,44 @@ table th {
   font-size: 36px;
 }
 
-@keyframes sun {
-  from {
-    left: 10%;
-    transform: rotate(0deg);
-  }
-  to {
-    left: 70%;
-    transform: rotate(360deg);
-  }
+#sun, #moon {
+  position: absolute;
+  transition: all 0.5s ease;
 }
 
 #sun {
-  position: absolute;
   left: 10%;
-  animation-name: sun;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation: sunMove 1s forwards;
 }
 
-@keyframes moon {
+#moon {
+  left: 80%;
+  animation: moonMove 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sunMove {
   from {
-    left: 70%;
+    left: 10%;
+    transform: rotate(0deg);
+  }
+  to {
+    left: 80%;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moonMove {
+  from {
+    left: 80%;
     transform: rotate(360deg);
   }
   to {
@@ -197,18 +217,8 @@ table th {
   }
 }
 
-#moon {
-  position: absolute;
-  left: 70%;
-  animation-name: moon;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-
-/* Responsive Styling */
 @media (max-width: 600px) {
-  #sun,
-  #moon {
+  #sun, #moon {
     font-size: 25px;
   }
 
@@ -217,7 +227,7 @@ table th {
     height: 40px;
   }
 
-  @keyframes sun {
+  @keyframes sunMove {
     from {
       left: 10%;
       transform: rotate(0deg);
@@ -228,7 +238,7 @@ table th {
     }
   }
 
-  @keyframes moon {
+  @keyframes moonMove {
     from {
       left: 65%;
       transform: rotate(360deg);
@@ -241,7 +251,7 @@ table th {
 }
 
 @media (max-width: 400px) {
-  @keyframes sun {
+  @keyframes sunMove {
     from {
       left: 10%;
       transform: rotate(0deg);
@@ -252,7 +262,7 @@ table th {
     }
   }
 
-  @keyframes moon {
+  @keyframes moonMove {
     from {
       left: 50%;
       transform: rotate(360deg);

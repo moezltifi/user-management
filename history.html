@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Action History</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <button id="lightDarkModeBtn" onclick="lightMode()">
+        <i id="moon" class="fa fa-moon-o"></i>
+      </button>
+  <div class="user-management">
+    <div class="head">
+    <p class="h1">Action History</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="historyTableBody"></tbody>
+    </table>
+    <div id="backToMain">
+      <button onclick="window.location.href='index.html'">Back to Main Page</button>
+    </div>
+    <div>
+      <button id="clearHistoryBtn" onclick="clearHistory()">Clear History</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const historyTableBody = document.getElementById("historyTableBody");
+      const actionHistory = JSON.parse(localStorage.getItem("actionHistory")) || [];
+
+      const tableContent = actionHistory.map((entry, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${entry.action}</td>
+          <td>${entry.user.name}</td>
+          <td>${entry.user.email}</td>
+          <td>${entry.user.role}</td>
+          <td>${entry.timestamp}</td>
+        </tr>`
+      ).join("");
+
+      historyTableBody.innerHTML = tableContent;
+    });
+
+    function clearHistory() {
+      localStorage.removeItem("actionHistory");
+      document.getElementById("historyTableBody").innerHTML = "";
+      alert("Action History cleared successfully.");
+    }
+
+    let pageMode = localStorage.getItem("mode") || "dark";
+
+    function setMode(mode) {
+      const inputs = document.getElementsByTagName("input");
+      const buttons = document.getElementsByTagName("button");
+      const lightDarkMode = document.getElementById("lightDarkModeBtn");
+
+      if (mode === "light") {
+        document.body.classList.add("body");
+        applyClassOnElements(inputs, "input", "add");
+        applyClassOnElements(buttons, "button", "add");
+        lightDarkMode.innerHTML = `<i id="sun" class="material-icons">sunny</i>`;
+      } else {
+        document.body.classList.remove("body");
+        applyClassOnElements(inputs, "input", "remove");
+        applyClassOnElements(buttons, "button", "remove");
+        lightDarkMode.innerHTML = `<i id="moon" class="fa fa-moon-o"></i>`;
+      }
+    }
+
+    function applyClassOnElements(elements, className, action) {
+      Array.from(elements).forEach(element => 
+        element.classList[action === "add" ? "add" : "remove"](className)
+      );
+    }
+
+    function lightMode() {
+      pageMode = pageMode === "dark" ? "light" : "dark";
+      setMode(pageMode);
+      localStorage.setItem("mode", pageMode);
+    }
+
+    setMode(pageMode);
+  </script>
+</body>
+</html>
